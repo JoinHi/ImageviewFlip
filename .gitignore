@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/src/main/java/com/example/myapplication/txt.txt
+.idea/inspectionProfiles/Project_Default.xml
