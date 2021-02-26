@@ -12,6 +12,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
+import java.util.HashMap
 
 class MaterialEditText(context: Context, attrs: AttributeSet?) : AppCompatEditText(context, attrs) {
     val mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -40,7 +41,7 @@ class MaterialEditText(context: Context, attrs: AttributeSet?) : AppCompatEditTe
     val textOffset = Utils.dp2px(20f)
 
     //动画
-     var animator: ObjectAnimator? = null
+    lateinit var animator: ObjectAnimator
 
     //透明度
     var materialAlpha = 0f
@@ -79,11 +80,12 @@ class MaterialEditText(context: Context, attrs: AttributeSet?) : AppCompatEditTe
                 }
             }
         })
+
     }
 
-    fun getAlphaAnimator() : ObjectAnimator?{
-        if(animator == null){
-            animator = ObjectAnimator.ofFloat(this@MaterialEditText, "materialAlpha",0f,1f)
+    fun getAlphaAnimator(): ObjectAnimator? {
+        if (!this::animator.isInitialized) {
+            animator = ObjectAnimator.ofFloat(this@MaterialEditText, "materialAlpha", 0f, 1f)
         }
         return animator
     }
